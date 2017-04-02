@@ -21,7 +21,6 @@ var characterSubsets = map[string]string{
 // PasswordProfile holds the lesspass settings
 type PasswordProfile map[string]interface{}
 
-// getPasswordProfile returns the default password configuration.
 func getPasswordProfile(passwordProfile PasswordProfile) PasswordProfile {
 	var defaultPasswordProfile = PasswordProfile{
 		"lowercase":  true,
