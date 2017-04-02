@@ -112,7 +112,7 @@ func GetConfiguredRules(passwordProfile PasswordProfile) []string {
 	var rules []string
 	allRules := []string{"lowercase", "uppercase", "numbers", "symbols"}
 	for _, rule := range allRules {
-		if passwordProfile[rule].(bool) {
+		if passwordProfile[rule] != nil && passwordProfile[rule].(bool) {
 			rules = append(rules, rule)
 		}
 	}

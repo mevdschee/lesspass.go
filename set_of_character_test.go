@@ -1,15 +1,13 @@
-package tests
+package lesspass
 
 import (
 	"math/big"
 	"strings"
 	"testing"
-
-	lesspass ".."
 )
 
-func testGetDefaultSetOfCharacters(t *testing.T) {
-	var setOfCharacters = lesspass.GetSetOfCharacters(nil)
+func TestGetDefaultSetOfCharacters(t *testing.T) {
+	var setOfCharacters = GetSetOfCharacters(nil)
 	if setOfCharacters != "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -18,8 +16,8 @@ func testGetDefaultSetOfCharacters(t *testing.T) {
 	}
 }
 
-func testGetDefaultSetOfCharactersConcatRulesInOrder(t *testing.T) {
-	var setOfCharacters = lesspass.GetSetOfCharacters([]string{"lowercase", "uppercase", "numbers"})
+func TestGetDefaultSetOfCharactersConcatRulesInOrder(t *testing.T) {
+	var setOfCharacters = GetSetOfCharacters([]string{"lowercase", "uppercase", "numbers"})
 	if setOfCharacters != "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -28,8 +26,8 @@ func testGetDefaultSetOfCharactersConcatRulesInOrder(t *testing.T) {
 	}
 }
 
-func testGetSetOfCharactersOnlyLowercase(t *testing.T) {
-	var setOfCharacters = lesspass.GetSetOfCharacters([]string{"lowercase"})
+func TestGetSetOfCharactersOnlyLowercase(t *testing.T) {
+	var setOfCharacters = GetSetOfCharacters([]string{"lowercase"})
 	if setOfCharacters != "abcdefghijklmnopqrstuvwxyz" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -38,8 +36,8 @@ func testGetSetOfCharactersOnlyLowercase(t *testing.T) {
 	}
 }
 
-func testGetSetOfCharactersOnlyUppercase(t *testing.T) {
-	var setOfCharacters = lesspass.GetSetOfCharacters([]string{"uppercase"})
+func TestGetSetOfCharactersOnlyUppercase(t *testing.T) {
+	var setOfCharacters = GetSetOfCharacters([]string{"uppercase"})
 	if setOfCharacters != "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -48,8 +46,8 @@ func testGetSetOfCharactersOnlyUppercase(t *testing.T) {
 	}
 }
 
-func testGetSetOfCharactersOnlyNumbers(t *testing.T) {
-	var setOfCharacters = lesspass.GetSetOfCharacters([]string{"numbers"})
+func TestGetSetOfCharactersOnlyNumbers(t *testing.T) {
+	var setOfCharacters = GetSetOfCharacters([]string{"numbers"})
 	if setOfCharacters != "0123456789" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -58,8 +56,8 @@ func testGetSetOfCharactersOnlyNumbers(t *testing.T) {
 	}
 }
 
-func testGetSetOfCharactersOnlySymbols(t *testing.T) {
-	var setOfCharacters = lesspass.GetSetOfCharacters([]string{"symbols"})
+func TestGetSetOfCharactersOnlySymbols(t *testing.T) {
+	var setOfCharacters = GetSetOfCharacters([]string{"symbols"})
 	if setOfCharacters != "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -68,8 +66,8 @@ func testGetSetOfCharactersOnlySymbols(t *testing.T) {
 	}
 }
 
-func testGenerateOneCharPerRule(t *testing.T) {
-	value, entropy := lesspass.GetOneCharPerRule(big.NewInt(26*26), []string{"lowercase", "uppercase"})
+func TestGenerateOneCharPerRule(t *testing.T) {
+	value, entropy := GetOneCharPerRule(big.NewInt(26*26), []string{"lowercase", "uppercase"})
 	if value != "aA" {
 		t.Fatal("value != \"aA\"")
 	}
@@ -81,17 +79,17 @@ func testGenerateOneCharPerRule(t *testing.T) {
 	}
 }
 
-func testConfiguredRules(t *testing.T) {
-	if strings.Join(lesspass.GetConfiguredRules(lesspass.PasswordProfile{"uppercase": true}), ", ") != "uppercase" {
+func TestConfiguredRules(t *testing.T) {
+	if strings.Join(GetConfiguredRules(PasswordProfile{"uppercase": true}), ", ") != "uppercase" {
 		t.Fatal("rules != \"uppercase\"")
 	}
-	if strings.Join(lesspass.GetConfiguredRules(lesspass.PasswordProfile{"uppercase": true, "lowercase": true}), ", ") != "lowercase, uppercase" {
+	if strings.Join(GetConfiguredRules(PasswordProfile{"uppercase": true, "lowercase": true}), ", ") != "lowercase, uppercase" {
 		t.Fatal("rules != \"lowercase, uppercase\"")
 	}
-	if strings.Join(lesspass.GetConfiguredRules(lesspass.PasswordProfile{"lowercase": true, "symbols": false}), ", ") != "lowercase" {
+	if strings.Join(GetConfiguredRules(PasswordProfile{"lowercase": true, "symbols": false}), ", ") != "lowercase" {
 		t.Fatal("rules != \"lowercase\"")
 	}
-	if strings.Join(lesspass.GetConfiguredRules(lesspass.PasswordProfile{"lowercase": true, "uppercase": true, "symbols": true, "numbers": true}), ", ") != "lowercase, uppercase, numbers, symbols" {
+	if strings.Join(GetConfiguredRules(PasswordProfile{"lowercase": true, "uppercase": true, "symbols": true, "numbers": true}), ", ") != "lowercase, uppercase, numbers, symbols" {
 		t.Fatal("rules != \"lowercase, uppercase, numbers, symbols\"")
 	}
 }

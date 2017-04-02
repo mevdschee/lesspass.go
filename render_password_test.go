@@ -1,60 +1,58 @@
-package tests
+package lesspass
 
 import (
 	"math/big"
 	"strings"
 	"testing"
-
-	lesspass ".."
 )
 
-func testRenderPasswordUseRemainderOfLongDivisionBetweenEntropyAndSetOfCharsLengthAsAnIndex(t *testing.T) {
+func TestRenderPasswordUseRemainderOfLongDivisionBetweenEntropyAndSetOfCharsLengthAsAnIndex(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
-	var passwordProfile = lesspass.PasswordProfile{}
-	var firstCharacter = lesspass.RenderPassword([]byte(entropy), passwordProfile)[0]
+	var passwordProfile = GetPasswordProfile(PasswordProfile{})
+	var firstCharacter = RenderPassword([]byte(entropy), passwordProfile)[0]
 	if firstCharacter != 'W' {
 		t.Fatal("firstCharacter != 'W'")
 	}
 }
 
-func testRenderPasswordUseQuotientAsSecondEntropyRecursively(t *testing.T) {
+func TestRenderPasswordUseQuotientAsSecondEntropyRecursively(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
-	var passwordProfile = lesspass.PasswordProfile{}
-	var secondCharacter = lesspass.RenderPassword([]byte(entropy), passwordProfile)[1]
+	var passwordProfile = GetPasswordProfile(PasswordProfile{})
+	var secondCharacter = RenderPassword([]byte(entropy), passwordProfile)[1]
 	if secondCharacter != 'H' {
 		t.Fatal("secondCharacter != 'H'")
 	}
 }
 
-func testRenderPasswordHasDefaultLengthOfSixteen(t *testing.T) {
+func TestRenderPasswordHasDefaultLengthOfSixteen(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
-	var passwordProfile = lesspass.PasswordProfile{}
-	var passwordLength = len(lesspass.RenderPassword([]byte(entropy), passwordProfile))
+	var passwordProfile = GetPasswordProfile(PasswordProfile{})
+	var passwordLength = len(RenderPassword([]byte(entropy), passwordProfile))
 	if passwordLength != 16 {
 		t.Fatal("passwordLength != 16")
 	}
 }
 
-func testRenderPasswordCanSpecifyLength(t *testing.T) {
+func TestRenderPasswordCanSpecifyLength(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
-	var passwordProfile = lesspass.PasswordProfile{"length": 20}
-	var passwordLength = len(lesspass.RenderPassword([]byte(entropy), passwordProfile))
+	var passwordProfile = GetPasswordProfile(PasswordProfile{"length": 20})
+	var passwordLength = len(RenderPassword([]byte(entropy), passwordProfile))
 	if passwordLength != 20 {
 		t.Fatal("passwordLength != 20")
 	}
 }
 
-func testIncludeOneCharPerSetOfCharacters(t *testing.T) {
-	var password = lesspass.InsertStringPseudoRandomly("123456", big.NewInt(7*6+2), "uT")
+func TestIncludeOneCharPerSetOfCharacters(t *testing.T) {
+	var password = InsertStringPseudoRandomly("123456", big.NewInt(7*6+2), "uT")
 	if password != "T12u3456" {
 		t.Fatal("password != \"T12u3456\"")
 	}
 }
 
-func testRenderPasswordReturnAtLeastOneCharInEveryCharacterSet(t *testing.T) {
+func TestRenderPasswordReturnAtLeastOneCharInEveryCharacterSet(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
-	var passwordProfile = lesspass.PasswordProfile{"length": 6}
-	var generatedPassword = lesspass.RenderPassword([]byte(entropy), passwordProfile)
+	var passwordProfile = GetPasswordProfile(PasswordProfile{"length": 6})
+	var generatedPassword = RenderPassword([]byte(entropy), passwordProfile)
 	var passwordLength = len(generatedPassword)
 	var lowercaseOk = strings.ContainsAny(generatedPassword, "abcdefghijklmnopqrstuvwxyz")
 	var uppercaseOk = strings.ContainsAny(generatedPassword, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
