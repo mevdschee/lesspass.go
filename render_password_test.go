@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestrenderPasswordUseRemainderOfLongDivisionBetweenEntropyAndSetOfCharsLengthAsAnIndex(t *testing.T) {
+func TestRenderPasswordUseRemainderOfLongDivisionBetweenEntropyAndSetOfCharsLengthAsAnIndex(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
 	var passwordProfile = getPasswordProfile(PasswordProfile{})
 	var firstCharacter = renderPassword([]byte(entropy), passwordProfile)[0]
@@ -15,7 +15,7 @@ func TestrenderPasswordUseRemainderOfLongDivisionBetweenEntropyAndSetOfCharsLeng
 	}
 }
 
-func TestrenderPasswordUseQuotientAsSecondEntropyRecursively(t *testing.T) {
+func TestRenderPasswordUseQuotientAsSecondEntropyRecursively(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
 	var passwordProfile = getPasswordProfile(PasswordProfile{})
 	var secondCharacter = renderPassword([]byte(entropy), passwordProfile)[1]
@@ -24,7 +24,7 @@ func TestrenderPasswordUseQuotientAsSecondEntropyRecursively(t *testing.T) {
 	}
 }
 
-func TestrenderPasswordHasDefaultLengthOfSixteen(t *testing.T) {
+func TestRenderPasswordHasDefaultLengthOfSixteen(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
 	var passwordProfile = getPasswordProfile(PasswordProfile{})
 	var passwordLength = len(renderPassword([]byte(entropy), passwordProfile))
@@ -33,7 +33,7 @@ func TestrenderPasswordHasDefaultLengthOfSixteen(t *testing.T) {
 	}
 }
 
-func TestrenderPasswordCanSpecifyLength(t *testing.T) {
+func TestRenderPasswordCanSpecifyLength(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
 	var passwordProfile = getPasswordProfile(PasswordProfile{"length": 20})
 	var passwordLength = len(renderPassword([]byte(entropy), passwordProfile))
@@ -49,7 +49,7 @@ func TestIncludeOneCharPerSetOfCharacters(t *testing.T) {
 	}
 }
 
-func TestrenderPasswordReturnAtLeastOneCharInEveryCharacterSet(t *testing.T) {
+func TestRenderPasswordReturnAtLeastOneCharInEveryCharacterSet(t *testing.T) {
 	var entropy = "dc33d431bce2b01182c613382483ccdb0e2f66482cbba5e9d07dab34acc7eb1e"
 	var passwordProfile = getPasswordProfile(PasswordProfile{"length": 6})
 	var generatedPassword = renderPassword([]byte(entropy), passwordProfile)

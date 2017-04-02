@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestcalcEntropyPbkdf2WithDefaultParams(t *testing.T) {
+func TestCalcEntropyPbkdf2WithDefaultParams(t *testing.T) {
 	var site = "example.org"
 	var login = "contact@example.org"
 	var masterPassword = "password"
@@ -16,7 +16,7 @@ func TestcalcEntropyPbkdf2WithDefaultParams(t *testing.T) {
 	}
 }
 
-func TestcalcEntropyWithDifferentOptions(t *testing.T) {
+func TestCalcEntropyWithDifferentOptions(t *testing.T) {
 	var site = "example.org"
 	var login = "contact@example.org"
 	var masterPassword = "password"
@@ -27,7 +27,7 @@ func TestcalcEntropyWithDifferentOptions(t *testing.T) {
 	}
 }
 
-func TestcalcEntropyWithCounterOne(t *testing.T) {
+func TestCalcEntropyWithCounterOne(t *testing.T) {
 	var site = "example.org"
 	var login = "contact@example.org"
 	var masterPassword = "password"
@@ -38,7 +38,7 @@ func TestcalcEntropyWithCounterOne(t *testing.T) {
 	}
 }
 
-func TestcalcEntropyWithCounterTwo(t *testing.T) {
+func TestCalcEntropyWithCounterTwo(t *testing.T) {
 	var site = "example.org"
 	var login = "contact@example.org"
 	var masterPassword = "password"
@@ -49,7 +49,7 @@ func TestcalcEntropyWithCounterTwo(t *testing.T) {
 	}
 }
 
-func TestconsumeEntropy(t *testing.T) {
+func TestConsumeEntropy(t *testing.T) {
 	var value, entropy = consumeEntropy("", big.NewInt(4*4+2), "abcd", 2)
 	if string(value) != "ca" {
 		t.Fatal("value != \"ca\"")

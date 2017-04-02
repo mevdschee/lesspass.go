@@ -26,7 +26,7 @@ func TestGetDefaultSetOfCharactersConcatRulesInOrder(t *testing.T) {
 	}
 }
 
-func TestgetSetOfCharactersOnlyLowercase(t *testing.T) {
+func TestGetSetOfCharactersOnlyLowercase(t *testing.T) {
 	var setOfCharacters = getSetOfCharacters([]string{"lowercase"})
 	if setOfCharacters != "abcdefghijklmnopqrstuvwxyz" {
 		t.Fatal("setOfCharacters is incorrect")
@@ -36,7 +36,7 @@ func TestgetSetOfCharactersOnlyLowercase(t *testing.T) {
 	}
 }
 
-func TestgetSetOfCharactersOnlyUppercase(t *testing.T) {
+func TestGetSetOfCharactersOnlyUppercase(t *testing.T) {
 	var setOfCharacters = getSetOfCharacters([]string{"uppercase"})
 	if setOfCharacters != "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
 		t.Fatal("setOfCharacters is incorrect")
@@ -46,7 +46,7 @@ func TestgetSetOfCharactersOnlyUppercase(t *testing.T) {
 	}
 }
 
-func TestgetSetOfCharactersOnlyNumbers(t *testing.T) {
+func TestGetSetOfCharactersOnlyNumbers(t *testing.T) {
 	var setOfCharacters = getSetOfCharacters([]string{"numbers"})
 	if setOfCharacters != "0123456789" {
 		t.Fatal("setOfCharacters is incorrect")
@@ -56,7 +56,7 @@ func TestgetSetOfCharactersOnlyNumbers(t *testing.T) {
 	}
 }
 
-func TestgetSetOfCharactersOnlySymbols(t *testing.T) {
+func TestGetSetOfCharactersOnlySymbols(t *testing.T) {
 	var setOfCharacters = getSetOfCharacters([]string{"symbols"})
 	if setOfCharacters != "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" {
 		t.Fatal("setOfCharacters is incorrect")
