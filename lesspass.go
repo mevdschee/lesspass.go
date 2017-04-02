@@ -40,7 +40,7 @@ func getPasswordProfile(passwordProfile PasswordProfile) PasswordProfile {
 	return defaultPasswordProfile
 }
 
-// GeneratePassword generates v2 password.
+// GeneratePassword generates a v2 lesspass password.
 func GeneratePassword(site, login, masterPassword string, passwordProfile PasswordProfile) string {
 	passwordProfile = getPasswordProfile(passwordProfile)
 	entropy := calcEntropy(site, login, masterPassword, passwordProfile)
