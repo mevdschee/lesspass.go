@@ -7,7 +7,7 @@ import (
 )
 
 func TestGetDefaultSetOfCharacters(t *testing.T) {
-	var setOfCharacters = GetSetOfCharacters(nil)
+	var setOfCharacters = getSetOfCharacters(nil)
 	if setOfCharacters != "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -17,7 +17,7 @@ func TestGetDefaultSetOfCharacters(t *testing.T) {
 }
 
 func TestGetDefaultSetOfCharactersConcatRulesInOrder(t *testing.T) {
-	var setOfCharacters = GetSetOfCharacters([]string{"lowercase", "uppercase", "numbers"})
+	var setOfCharacters = getSetOfCharacters([]string{"lowercase", "uppercase", "numbers"})
 	if setOfCharacters != "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -26,8 +26,8 @@ func TestGetDefaultSetOfCharactersConcatRulesInOrder(t *testing.T) {
 	}
 }
 
-func TestGetSetOfCharactersOnlyLowercase(t *testing.T) {
-	var setOfCharacters = GetSetOfCharacters([]string{"lowercase"})
+func TestgetSetOfCharactersOnlyLowercase(t *testing.T) {
+	var setOfCharacters = getSetOfCharacters([]string{"lowercase"})
 	if setOfCharacters != "abcdefghijklmnopqrstuvwxyz" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -36,8 +36,8 @@ func TestGetSetOfCharactersOnlyLowercase(t *testing.T) {
 	}
 }
 
-func TestGetSetOfCharactersOnlyUppercase(t *testing.T) {
-	var setOfCharacters = GetSetOfCharacters([]string{"uppercase"})
+func TestgetSetOfCharactersOnlyUppercase(t *testing.T) {
+	var setOfCharacters = getSetOfCharacters([]string{"uppercase"})
 	if setOfCharacters != "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -46,8 +46,8 @@ func TestGetSetOfCharactersOnlyUppercase(t *testing.T) {
 	}
 }
 
-func TestGetSetOfCharactersOnlyNumbers(t *testing.T) {
-	var setOfCharacters = GetSetOfCharacters([]string{"numbers"})
+func TestgetSetOfCharactersOnlyNumbers(t *testing.T) {
+	var setOfCharacters = getSetOfCharacters([]string{"numbers"})
 	if setOfCharacters != "0123456789" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -56,8 +56,8 @@ func TestGetSetOfCharactersOnlyNumbers(t *testing.T) {
 	}
 }
 
-func TestGetSetOfCharactersOnlySymbols(t *testing.T) {
-	var setOfCharacters = GetSetOfCharacters([]string{"symbols"})
+func TestgetSetOfCharactersOnlySymbols(t *testing.T) {
+	var setOfCharacters = getSetOfCharacters([]string{"symbols"})
 	if setOfCharacters != "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" {
 		t.Fatal("setOfCharacters is incorrect")
 	}
@@ -67,7 +67,7 @@ func TestGetSetOfCharactersOnlySymbols(t *testing.T) {
 }
 
 func TestGenerateOneCharPerRule(t *testing.T) {
-	value, entropy := GetOneCharPerRule(big.NewInt(26*26), []string{"lowercase", "uppercase"})
+	value, entropy := getOneCharPerRule(big.NewInt(26*26), []string{"lowercase", "uppercase"})
 	if value != "aA" {
 		t.Fatal("value != \"aA\"")
 	}
@@ -80,16 +80,16 @@ func TestGenerateOneCharPerRule(t *testing.T) {
 }
 
 func TestConfiguredRules(t *testing.T) {
-	if strings.Join(GetConfiguredRules(PasswordProfile{"uppercase": true}), ", ") != "uppercase" {
+	if strings.Join(getConfiguredRules(PasswordProfile{"uppercase": true}), ", ") != "uppercase" {
 		t.Fatal("rules != \"uppercase\"")
 	}
-	if strings.Join(GetConfiguredRules(PasswordProfile{"uppercase": true, "lowercase": true}), ", ") != "lowercase, uppercase" {
+	if strings.Join(getConfiguredRules(PasswordProfile{"uppercase": true, "lowercase": true}), ", ") != "lowercase, uppercase" {
 		t.Fatal("rules != \"lowercase, uppercase\"")
 	}
-	if strings.Join(GetConfiguredRules(PasswordProfile{"lowercase": true, "symbols": false}), ", ") != "lowercase" {
+	if strings.Join(getConfiguredRules(PasswordProfile{"lowercase": true, "symbols": false}), ", ") != "lowercase" {
 		t.Fatal("rules != \"lowercase\"")
 	}
-	if strings.Join(GetConfiguredRules(PasswordProfile{"lowercase": true, "uppercase": true, "symbols": true, "numbers": true}), ", ") != "lowercase, uppercase, numbers, symbols" {
+	if strings.Join(getConfiguredRules(PasswordProfile{"lowercase": true, "uppercase": true, "symbols": true, "numbers": true}), ", ") != "lowercase, uppercase, numbers, symbols" {
 		t.Fatal("rules != \"lowercase, uppercase, numbers, symbols\"")
 	}
 }
