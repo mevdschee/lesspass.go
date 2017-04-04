@@ -2,7 +2,7 @@ package lesspass
 
 import "testing"
 
-func TestRenderPassword(t *testing.T) {
+func TestGeneratePassword(t *testing.T) {
 	site := "example.org"
 	login := "contact@example.org"
 	masterPassword := "password"
@@ -13,7 +13,7 @@ func TestRenderPassword(t *testing.T) {
 	}
 }
 
-func TestRenderPasswordNoSymbols(t *testing.T) {
+func TestGeneratePasswordNoSymbols(t *testing.T) {
 	site := "example.org"
 	login := "contact@example.org"
 	masterPassword := "password"
@@ -24,7 +24,7 @@ func TestRenderPasswordNoSymbols(t *testing.T) {
 	}
 }
 
-func TestRenderPasswordOnlyDigits(t *testing.T) {
+func TestGeneratePasswordOnlyDigits(t *testing.T) {
 	site := "example.org"
 	login := "contact@example.org"
 	masterPassword := "password"
@@ -35,7 +35,7 @@ func TestRenderPasswordOnlyDigits(t *testing.T) {
 	}
 }
 
-func TestRenderPasswordNoNumbers(t *testing.T) {
+func TestGeneratePasswordNoNumbers(t *testing.T) {
 	site := "example.org"
 	login := "contact@example.org"
 	masterPassword := "password"
@@ -46,7 +46,7 @@ func TestRenderPasswordNoNumbers(t *testing.T) {
 	}
 }
 
-func TestRenderPasswordWithDefaultOptions(t *testing.T) {
+func TestGeneratePasswordWithDefaultOptions(t *testing.T) {
 	site := "example.org"
 	login := "contact@example.org"
 	masterPassword := "password"
