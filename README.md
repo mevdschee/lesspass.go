@@ -1,6 +1,6 @@
 # lesspass.go
 
-A LessPass implementation in Go
+A LessPass implementation in Go (has a [GUI](https://github.com/mevdschee/lesspass-gui) now!)
 
 ## Tests
 
