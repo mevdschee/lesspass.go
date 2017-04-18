@@ -1,3 +1,5 @@
+// Initial version by Yoann Cerda, see: https://github.com/tuxlinuxien/lesspassgo
+
 package lesspass
 
 import (
