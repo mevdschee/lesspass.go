@@ -1,4 +1,4 @@
-// Initial version by Yoann Cerda, see: https://github.com/tuxlinuxien/lesspassgo
+// Initial implementation by Yoann Cerda, see: https://github.com/tuxlinuxien/lesspassgo
 
 package lesspass
 
